@@ -13,12 +13,18 @@ const MONGODB_URI = process.env.VERCEL_ENV === 'production'
 mongoose.connect(MONGODB_URI, {
       dbName: 'counter',
   });
-const db = mongoose.connection;
-db.on('error', console.error.bind(console, 'connection error:'));
-db.once('open', () => {
-  console.log('Connected to MongoDB');
-});
-
+const connectDB = async () => {
+  try {
+      await mongoose.connect(MONGODB_URI, {
+          dbName: 'counter'
+      });
+      console.log('Connected to MongoDB');
+  } catch (error) {
+      console.error('MongoDB connection error:', error);
+      process.exit(1);
+  }
+};
+connectDB();
 app.use(express.static(path.join(__dirname, 'public')));
 app.get('/', (req, res) => {
   res.sendFile(path.join(__dirname, 'public', 'index.html'));
