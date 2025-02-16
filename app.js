@@ -6,11 +6,11 @@ const counterRoutes = require('./routes/index');
 const app = express();
 const port = process.env.PORT || 3001;
 
-const MONGODB_URI = process.env.VERCEL_ENV === 'production' 
-    ? process.env.MONGODB_URI_PROD
-    : process.env.MONGODB_URI_DEV;
+// const MONGODB_URI = process.env.VERCEL_ENV === 'production' 
+//     ? process.env.MONGODB_URI_PROD
+//     : process.env.MONGODB_URI_DEV;
 
-mongoose.connect(MONGODB_URI, {
+    mongoose.connect('mongodb+srv://manosakpujiha:UrXx4YCTKpaANGFk@clubrecipee-cluster.1x1x0.mongodb.net/?retryWrites=true&w=majority&appName=clubrecipee-cluster' , {
       dbName: 'counter',
   });
 const db = mongoose.connection;
