@@ -18,7 +18,7 @@ db.once('open', () => {
 
 app.use(express.json());
 app.use('/api', counterRoutes);
-app.use(express.static('public')); // Serve static files
+app.use(express.static('/public')); // Serve static files
 
 app.listen(port, () => {
   console.log(`Server is running on port ${port}`);
