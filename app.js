@@ -4,7 +4,7 @@ require('dotenv').config()
 const path = require('path');
 const counterRoutes = require('./routes/index');
 const app = express();
-const port = process.env.PORT || 3001;
+const port = process.env.PORT;
 
 const MONGODB_URI = process.env.VERCEL_ENV === 'production' 
     ? process.env.MONGODB_URI_PROD
