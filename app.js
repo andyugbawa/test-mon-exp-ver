@@ -31,8 +31,6 @@ app.get('/', (req, res) => {
 });
 app.use('/api', counterRoutes);
 
-app.listen(port, () => {
-  console.log(`Server is running on port ${port}`);
-});
+
 
 module.exports = app;
