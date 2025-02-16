@@ -4,9 +4,11 @@ require('dotenv').config();
 const counterRoutes = require('./routes/index');
 
 const app = express();
-const port = process.env.PORT || 3000;
+const port = process.env.PORT || 3001;
 
-mongoose.connect(process.env.MONGODB_URI_DEV);
+mongoose.connect('mongodb+srv://manosakpujiha:UrXx4YCTKpaANGFk@clubrecipee-cluster.1x1x0.mongodb.net/?retryWrites=true&w=majority&appName=clubrecipee-cluster' , {
+    dbName: 'counter',
+});
 
 const db = mongoose.connection;
 db.on('error', console.error.bind(console, 'connection error:'));
