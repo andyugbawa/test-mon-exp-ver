@@ -1,8 +1,6 @@
 const express = require('express');
 const mongoose = require('mongoose');
-if (process.env.NODE_ENV !== 'production') {
-  require('dotenv').config();
-}
+require('dotenv').config()
 const path = require('path');
 const counterRoutes = require('./routes/index');
 
@@ -19,17 +17,13 @@ db.once('open', () => {
   console.log('Connected to MongoDB');
 });
 
-app.use(express.json());
 app.use(express.static(path.join(__dirname, 'public'))); // Serve static files
-app.use(express.urlencoded({ extended: true }));
 
 app.get('/man', (req, res) => {
   res.sendFile(path.join(__dirname, 'public', 'index.html'));
 });
 
 app.use('/api', counterRoutes);
-
-
 
 app.listen(port, () => {
   console.log(`Server is running on port ${port}`);
