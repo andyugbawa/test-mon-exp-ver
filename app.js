@@ -1,6 +1,7 @@
 const express = require('express');
 const mongoose = require('mongoose');
 require('dotenv').config();
+const path = require('path');
 const counterRoutes = require('./routes/index');
 
 const app = express();
@@ -19,6 +20,11 @@ db.once('open', () => {
 app.use(express.json());
 app.use('/api', counterRoutes);
 app.use(express.static('/public')); // Serve static files
+
+app.get('/', (req, res) => {
+  res.sendFile(path.join(__dirname, 'public', 'index.html'));
+});
+
 
 app.listen(port, () => {
   console.log(`Server is running on port ${port}`);
