@@ -19,7 +19,7 @@ db.once('open', () => {
 
 app.use(express.static(path.join(__dirname, 'public'))); // Serve static files
 
-app.get('/man', (req, res) => {
+app.get('/', (req, res) => {
   res.sendFile(path.join(__dirname, 'public', 'index.html'));
 });
 
