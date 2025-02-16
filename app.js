@@ -1,6 +1,8 @@
 const express = require('express');
 const mongoose = require('mongoose');
-require('dotenv').config();
+if (process.env.NODE_ENV !== 'production') {
+  require('dotenv').config();
+}
 const path = require('path');
 const counterRoutes = require('./routes/index');
 
@@ -21,7 +23,7 @@ app.use(express.json());
 app.use(express.static(path.join(__dirname, 'public'))); // Serve static files
 app.use(express.urlencoded({ extended: true }));
 
-app.get('/', (req, res) => {
+app.get('/man', (req, res) => {
   res.sendFile(path.join(__dirname, 'public', 'index.html'));
 });
 
