@@ -1,33 +1,73 @@
+mon-exp-ver/public/index.html -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Counter App</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Counter App</title>
+    <style>
+        .container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            font-family: system-ui;
+        }
+        .btn {
+            padding: 1rem 2rem;
+            font-size: 1.1rem;
+            border: none;
+            border-radius: 8px;
+            background: #4CAF50;
+            color: white;
+            cursor: pointer;
+            transition: transform 0.2s;
+        }
+        .btn:hover { transform: scale(1.05); }
+        .counter { font-size: 2rem; margin-bottom: 1rem; }
+    </style>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 </head>
 <body>
-  <h1>Counter: <span id="counter">0</span></h1>
-  <button id="incrementButton">Increment Counter</button>
+    <div class="container">
+        <h1 class="counter">Counter: <span id="counter">0</span></h1>
+        <button class="btn" id="incrementButton">Increment Counter</button>
+    </div>
 
-  <script>
-    async function fetchCounter() {
-      const response = await fetch('/api/count');
-      const data = await response.json();
-      document.getElementById('counter').innerText = data.count;
-    }
+    <script>
+        const counter = document.getElementById('counter');
+        const incrementBtn = document.getElementById('incrementButton');
 
-    async function incrementCounter() {
-      const response = await fetch('/api/count', {
-        method: 'POST',
-      });
-      const data = await response.json();
-      document.getElementById('counter').innerText = data.count;
-    }
+        const api = {
+            async getCount() {
+                try {
+                    const { data } = await axios.get('/api/count');
+                    return data.count;
+                } catch (err) {
+                    console.error(err);
+                    return 0;
+                }
+            },
+            async increment() {
+                try {
+                    const { data } = await axios.post('/api/count');
+                    return data.count;
+                } catch (err) {
+                    console.error(err);
+                    return null;
+                }
+            }
+        };
 
-    document.getElementById('incrementButton').addEventListener('click', incrementCounter);
+        const updateCount = count => counter.textContent = count;
 
-    // Fetch the initial counter value when the page loads
-    fetchCounter();
-  </script>
+        incrementBtn.addEventListener('click', async () => {
+            const count = await api.increment();
+            if (count !== null) updateCount(count);
+        });
+
+        (async () => updateCount(await api.getCount()))();
+    </script>
 </body>
 </html>

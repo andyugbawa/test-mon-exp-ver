@@ -4,7 +4,7 @@
   "description": "A simple Node.js application using Express.",
   "main": "src/app.js",
   "scripts": {
-    "start": "node src/app.js",
+    "start": "node app.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "dependencies": {

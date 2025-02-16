@@ -2,7 +2,6 @@ const express = require('express');
 const mongoose = require('mongoose');
 const path = require('path');
 require('dotenv').config();
-
 const app = express();
 const counterRoutes = require('./routes/index');
 
@@ -10,7 +9,6 @@ const counterRoutes = require('./routes/index');
 const MONGODB_URI = process.env.VERCEL_ENV === 'production' 
     ? process.env.MONGODB_URI_PROD 
     : process.env.MONGODB_URI_DEV;
-
 mongoose.connect(MONGODB_URI, { dbName: 'counter' })
     .then(() => console.log('Connected to MongoDB'))
     .catch(err => {
@@ -25,6 +23,4 @@ app.use('/api', counterRoutes);
 app.listen(process.env.PORT, () => {
   console.log(`Server is running on port`);
 });
-
 module.exports = app;
-
