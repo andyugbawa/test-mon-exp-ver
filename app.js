@@ -17,13 +17,14 @@ db.once('open', () => {
   console.log('Connected to MongoDB');
 });
 
-app.use(express.json());
-app.use('/api', counterRoutes);
-app.use(express.static('/public')); // Serve static files
-
 app.get('/', (req, res) => {
   res.sendFile(path.join(__dirname, 'public', 'index.html'));
 });
+app.use('/api', counterRoutes);
+app.use(express.static('/public')); // Serve static files
+app.use(express.json());
+
+
 
 
 app.listen(port, () => {
