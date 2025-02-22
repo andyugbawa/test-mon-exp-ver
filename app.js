@@ -4,12 +4,11 @@ const path = require('path');
 require('dotenv').config();
 const app = express();
 const counterRoutes = require('./routes/index');
-var MONGODB_URI = "mongodb+srv://andyugbawa:utXW8UXhMNSXq8g4@cluster0.sfypk.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0"
+
 // MongoDB Connection
-// const MONGODB_URI = process.env.VERCEL_ENV === 'production' 
-//     ? process.env.MONGODB_URI_PROD
-//     : process.env.MONGODB_URI_PROD;
-//     console.log(MONGODB_URI);
+const MONGODB_URI = process.env.VERCEL_ENV === 'production' 
+    ? process.env.MONGODB_URI_PROD 
+    : process.env.MONGODB_URI_DEV;
 mongoose.connect(MONGODB_URI, { dbName: 'counter' })
     .then(() => console.log('Connected to MongoDB'))
     .catch(err => {
