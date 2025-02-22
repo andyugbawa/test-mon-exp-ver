@@ -7,8 +7,8 @@ const counterRoutes = require('./routes/index');
 
 // MongoDB Connection
 const MONGODB_URI = process.env.VERCEL_ENV === 'production' 
-    ? process.env.MONGODB_URI_PROD 
-    : process.env.MONGODB_URI_PROD;
+    ? process.env.MONGODB_URI_PROD_ANDY
+    : process.env.MONGODB_URI_PROD_ANDY;
     console.log(MONGODB_URI)
 mongoose.connect(MONGODB_URI, { dbName: 'counter' })
     .then(() => console.log('Connected to MongoDB'))
