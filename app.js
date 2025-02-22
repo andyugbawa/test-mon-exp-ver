@@ -10,7 +10,7 @@ const MONGODB_URI = process.env.VERCEL_ENV === 'production'
     ? process.env.MONGODB_URI_PROD
     : process.env.MONGODB_URI_PROD;
     console.log(MONGODB_URI)
-mongoose.connect(MONGODB_URI, { dbName: 'counter' })
+mongoose.connect("mongodb+srv://andyugbawa:utXW8UXhMNSXq8g4@cluster0.sfypk.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0", { dbName: 'counter' })
     .then(() => console.log('Connected to MongoDB'))
     .catch(err => {
         console.error('MongoDB connection error:', err);
