@@ -21,7 +21,7 @@ mongoose.connect("mongodb+srv://andyugbawa:utXW8UXhMNSXq8g4@cluster0.sfypk.mongo
 app.use(express.static(path.join(__dirname, 'public')));
 app.get('/', (req, res) => res.sendFile(path.join(__dirname, 'public', 'index.html')));
 app.use('/api', counterRoutes);
-app.listen(process.env.PORT, () => {
-  console.log(`Server is running on port`);
-});
+// app.listen(process.env.PORT, () => {
+//   console.log(`Server is running on port`);
+// });
 module.exports = app;
